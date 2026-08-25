@@ -48,6 +48,29 @@ int ReadHowManyQuestons()
     
 }
 
+enOperationType ReadOperationType()
+{
+    short OpType;
+    do
+    {
+        cout << "Enter The Operation [1]Add+ [2]Sub- [3]Multi* [4]Divid/ [5]MixOp?";
+        cin >> OpType;
+    } while (OpType < 1 || OpType > 5);
+    
+    return (enOperationType) OpType;
+}
+
+enQuestionLevel ReadQuestionLvl()
+{
+    short QuestionLvl;
+    do
+    {
+        cout << "Enter The Level [1]Easy [2]Medium [3]Hard [4]MixLvl ?";
+    } while (QuestionLvl < 1 || QuestionLvl > 4);
+    
+    return (enQuestionLevel) QuestionLvl;
+}
+
 int main()
 {
     srand(time(0));
