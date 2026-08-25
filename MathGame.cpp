@@ -30,6 +30,23 @@ struct  stQuizz
 
 };
 
+int RandomNumber(int From, int To)
+{
+    return rand() % (To - From + 1) + From;
+}
+
+int ReadHowManyQuestons()
+{
+    short HowManyQuestons = 0;
+    do
+    {
+        cout << "How Many Questions Do You Want [1:100]?";
+        cin >> HowManyQuestons;
+    } while (HowManyQuestons < 1 || HowManyQuestons > 100);
+
+    return HowManyQuestons;
+    
+}
 
 int main()
 {
