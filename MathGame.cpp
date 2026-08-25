@@ -71,6 +71,67 @@ enQuestionLevel ReadQuestionLvl()
     return (enQuestionLevel) QuestionLvl;
 }
 
+enOperationType GetRandomOperationType()
+{
+    short Op;
+    return (enOperationType) RandomNumber(1, 4);
+}
+
+int SimpleCalculator(int Number1, int Number2, enOperationType OpType)
+{
+    switch (OpType)
+    {
+    case enOperationType::Add:
+        return Number1 + Number2;
+        break;
+
+    case enOperationType::Sub:
+        return Number1 - Number2;
+        break;
+
+    case enOperationType::Multi:
+        return Number1 * Number2;
+        break;
+
+    case enOperationType::Divid:
+        return Number1 / Number2;
+        break;    
+    
+    default:
+        return Number1 + Number2;
+        break;
+    }
+}
+
+stQuestion GenerateQuestion(enOperationType OpType, enQuestionLevel QuesetionLvl)
+{
+    stQuestion Question;
+
+    if(QuesetionLvl == enQuestionLevel::MixLvl)
+    {
+        QuesetionLvl = (enQuestionLevel) RandomNumber(1, 3);
+    }
+
+    if(OpType == enOperationType::MixOp)
+    {
+        OpType =  GetRandomOperationType();
+    }
+
+    Question.OpType = OpType;
+
+    switch (QuesetionLvl)
+    {
+    case  enQuestionLevel::Easy:
+        Question.Number1 = RandomNumber(1, 10);
+        Question.Number2 = RandomNumber(1, 10);
+
+        break;
+    
+    default:
+        break;
+    }
+}
+
 int main()
 {
     srand(time(0));
