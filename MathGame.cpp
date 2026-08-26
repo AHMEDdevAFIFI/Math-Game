@@ -66,6 +66,7 @@ enQuestionLevel ReadQuestionLvl()
     do
     {
         cout << "Enter The Level [1]Easy [2]Medium [3]Hard [4]MixLvl ?";
+        cin >> QuestionLvl;
     } while (QuestionLvl < 1 || QuestionLvl > 4);
     
     return (enQuestionLevel) QuestionLvl;
@@ -73,7 +74,6 @@ enQuestionLevel ReadQuestionLvl()
 
 enOperationType GetRandomOperationType()
 {
-    short Op;
     return (enOperationType) RandomNumber(1, 4);
 }
 
@@ -152,7 +152,7 @@ stQuestion GenerateQuestion(enOperationType OpType, enQuestionLevel QuesetionLvl
 
 void GenerateQuizzQuestioins(stQuizz &Quizz)
 {
-    for(int Question = 0; Question >= Quizz.NumberOfQuestion; Question++)
+    for(int Question = 0; Question < Quizz.NumberOfQuestion; Question++)
     {
         Quizz.QuestionsList[Question] = GenerateQuestion(Quizz.OperationType, Quizz.QuestionsLevel);
     }
