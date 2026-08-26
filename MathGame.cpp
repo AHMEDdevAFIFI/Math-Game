@@ -125,11 +125,29 @@ stQuestion GenerateQuestion(enOperationType OpType, enQuestionLevel QuesetionLvl
         Question.Number1 = RandomNumber(1, 10);
         Question.Number2 = RandomNumber(1, 10);
 
+        Question.CorrectAnswer = SimpleCalculator(Question.Number1, Question.Number2, OpType);
+        Question.QuestionLevel = QuesetionLvl;
         break;
+
+    case  enQuestionLevel::Medium:
+        Question.Number1 = RandomNumber(10, 50);
+        Question.Number2 = RandomNumber(10, 50);
+
+        Question.CorrectAnswer = SimpleCalculator(Question.Number1, Question.Number2, OpType);
+        Question.QuestionLevel = QuesetionLvl;
+        break;    
     
-    default:
+        case  enQuestionLevel::Hard:
+        Question.Number1 = RandomNumber(50, 100);
+        Question.Number2 = RandomNumber(50, 100);
+
+        Question.CorrectAnswer = SimpleCalculator(Question.Number1, Question.Number2, OpType);
+        Question.QuestionLevel = QuesetionLvl;
         break;
+   
     }
+
+    return Question;
 }
 
 int main()
