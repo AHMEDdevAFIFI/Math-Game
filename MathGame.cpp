@@ -20,7 +20,7 @@ struct  stQuestion
 
 struct  stQuizz
 {
-    stQuestion Questions[100];
+    stQuestion QuestionsList[100];
     short NumberOfQuestion;
     enQuestionLevel QuestionsLevel;
     enOperationType OperationType;
@@ -148,6 +148,14 @@ stQuestion GenerateQuestion(enOperationType OpType, enQuestionLevel QuesetionLvl
     }
 
     return Question;
+}
+
+void GenerateQuizzQuestioins(stQuizz &Quizz)
+{
+    for(int Question = 0; Question >= Quizz.NumberOfQuestion; Question++)
+    {
+        Quizz.QuestionsList[Question] = GenerateQuestion(Quizz.OperationType, Quizz.QuestionsLevel);
+    }
 }
 
 int main()
