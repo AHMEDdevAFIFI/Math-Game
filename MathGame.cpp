@@ -77,6 +77,30 @@ enOperationType GetRandomOperationType()
     return (enOperationType) RandomNumber(1, 4);
 }
 
+int ReadQuestionAnswer()
+{
+    int Answer = 0;
+    cin >> Answer;
+    return Answer;
+}
+
+string GetOpTypeSymbol(enOperationType OpType)
+{
+    switch (OpType)
+    {
+    case enOperationType::Add:
+        return "+";
+    case enOperationType::Sub:
+        return "-";
+    case enOperationType::Multi:
+        return "*";
+    case enOperationType::Divid:
+        return "/";
+    default:
+        return "?";
+    }
+}
+
 int SimpleCalculator(int Number1, int Number2, enOperationType OpType)
 {
     switch (OpType)
@@ -103,6 +127,17 @@ int SimpleCalculator(int Number1, int Number2, enOperationType OpType)
     }
 }
 
+void PrintQuestion(stQuizz &Quizz, short NumberOfQuestion)
+{
+    cout << "\n";
+    cout << "Question [" << NumberOfQuestion + 1 << "/" << Quizz.QuestionsList << "] \n\n";
+    cout << Quizz.QuestionsList[NumberOfQuestion].Number1 << endl;
+    cout << Quizz.QuestionsList[NumberOfQuestion].Number2 << endl;
+    cout << GetOpTypeSymbol(Quizz.OperationType);
+    cout << "\n---------------" << endl;
+
+}
+
 stQuestion GenerateQuestion(enOperationType OpType, enQuestionLevel QuesetionLvl)
 {
     stQuestion Question;
@@ -118,31 +153,29 @@ stQuestion GenerateQuestion(enOperationType OpType, enQuestionLevel QuesetionLvl
     }
 
     Question.OpType = OpType;
+    Question.QuestionLevel = QuesetionLvl;
 
     switch (QuesetionLvl)
     {
     case  enQuestionLevel::Easy:
         Question.Number1 = RandomNumber(1, 10);
         Question.Number2 = RandomNumber(1, 10);
-
         Question.CorrectAnswer = SimpleCalculator(Question.Number1, Question.Number2, OpType);
-        Question.QuestionLevel = QuesetionLvl;
+        return Question;
         break;
 
     case  enQuestionLevel::Medium:
         Question.Number1 = RandomNumber(10, 50);
         Question.Number2 = RandomNumber(10, 50);
-
         Question.CorrectAnswer = SimpleCalculator(Question.Number1, Question.Number2, OpType);
-        Question.QuestionLevel = QuesetionLvl;
+        return Question;
         break;    
     
         case  enQuestionLevel::Hard:
         Question.Number1 = RandomNumber(50, 100);
         Question.Number2 = RandomNumber(50, 100);
-
         Question.CorrectAnswer = SimpleCalculator(Question.Number1, Question.Number2, OpType);
-        Question.QuestionLevel = QuesetionLvl;
+        return Question;
         break;
    
     }
